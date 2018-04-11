@@ -1,0 +1,59 @@
+package StanleysStorage;
+
+public class Location {
+
+	private String name;
+	private String state;
+	private String city;
+	private int locationNum;
+	private int rentedUnitCount;
+	private int row;
+	private int col;
+	private Unit[][] unitArr;
+	
+	
+	public Location(String state, int locationNum, String city, int row, int col) throws Exception {
+		super();
+		this.name = name;
+		this.locationNum = locationNum;
+		this.state = state;
+		this.city = city;
+		this.rentedUnitCount = 0;
+		this.row = row;
+		this.col = col;
+		this.unitArr = unitArr;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public int getRentedUnitCount() {
+		return rentedUnitCount;
+	}
+	
+	
+	
+}

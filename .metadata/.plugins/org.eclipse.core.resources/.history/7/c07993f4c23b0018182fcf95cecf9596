@@ -1,0 +1,60 @@
+package StanleysStorage;
+
+public class Location {
+
+	private String name;
+	private String state;
+	private String city;
+	private int locationNum;
+	private int rentedUnitCount;
+	private int row;
+	private int col;
+	private Unit[][] unitArr;
+	
+	
+	public Location(String state, int locationNum, String city, int row, int col) throws Exception {
+		if (state == null || state.isEmpty()) {
+			throw new Exception("2 letter state code must be specified");
+		}
+		if (state.length() > 2) {
+			throw new Exception("state code invalid");
+		}
+		this.locationNum = locationNum;
+		this.state = state.toUpperCase();
+		this.city = city;
+		this.name = this.getName();
+		this.rentedUnitCount = 0;
+		this.row = row;
+		this.col = col;
+		this.unitArr = unitArr;
+	}
+
+
+	/*
+	 * Getters and Setters
+	 */
+	
+	public String getState() {
+		return state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	/*
+	 * methods
+	 */
+
+	public String getName() {
+		return this.state + this.locationNum + this.city;
+	}
+
+
+	public int getRentedUnitCount() {
+		return rentedUnitCount;
+	}
+	
+	
+	
+}

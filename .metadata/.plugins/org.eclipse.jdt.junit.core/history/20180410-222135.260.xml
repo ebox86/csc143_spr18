@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UnitTest" project="Project1" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="StanleysStorage.UnitTest" time="0.0" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.UnitTest]">
+    <testcase name="testGettersAndSetters" classname="StanleysStorage.UnitTest" time="0.0" displayname="testGettersAndSetters" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.UnitTest]/[test:testGettersAndSetters(StanleysStorage.UnitTest)]"/>
+    <testcase name="testRent" classname="StanleysStorage.UnitTest" time="0.0" displayname="testRent" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.UnitTest]/[test:testRent(StanleysStorage.UnitTest)]"/>
+    <testcase name="testToString" classname="StanleysStorage.UnitTest" time="0.0" displayname="testToString" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.UnitTest]/[test:testToString(StanleysStorage.UnitTest)]"/>
+    <testcase name="testConstructorAndGets" classname="StanleysStorage.UnitTest" time="0.0" displayname="testConstructorAndGets" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.UnitTest]/[test:testConstructorAndGets(StanleysStorage.UnitTest)]"/>
+    <testcase name="testRelease" classname="StanleysStorage.UnitTest" time="0.0" displayname="testRelease" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.UnitTest]/[test:testRelease(StanleysStorage.UnitTest)]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,44 @@
+package StanleysStorage;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class LocationTest {
+
+    /**
+     * Default constructor for test class UnitTest
+     */
+    public LocationTest() {
+    }
+    
+    /**
+     * Sets up the test fixture.
+     *
+     * Called before every test case method.
+     */
+    @Before
+    public void setUp() {
+    }
+
+    /**
+     * Tears down the test fixture.
+     *
+     * Called after every test case method.
+     */
+    @After
+    public void tearDown() {
+    }
+	
+    
+	@Test
+	public void testConstructorAndGets() throws Exception {
+		Location loc = new Location("WA23Issaquah");
+		assertEquals("WA", loc.getCity());
+		assertEquals("23", loc.getLocationNumber(), 0);
+		
+	}
+
+}

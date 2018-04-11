@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="LocationTest" project="Project1" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="StanleysStorage.LocationTest" time="0.068" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]">
+    <testcase name="testConstructorAndGets" classname="StanleysStorage.LocationTest" time="0.026" displayname="testConstructorAndGets" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]/[test:testConstructorAndGets(StanleysStorage.LocationTest)]"/>
+    <testcase name="testGetEmptyUnits" classname="StanleysStorage.LocationTest" time="0.023" displayname="testGetEmptyUnits" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]/[test:testGetEmptyUnits(StanleysStorage.LocationTest)]"/>
+    <testcase name="testCustomerAdd" classname="StanleysStorage.LocationTest" time="0.01" displayname="testCustomerAdd" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]/[test:testCustomerAdd(StanleysStorage.LocationTest)]"/>
+    <testcase name="testGetCustomer" classname="StanleysStorage.LocationTest" time="0.009" displayname="testGetCustomer" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]/[test:testGetCustomer(StanleysStorage.LocationTest)]"/>
+  </testsuite>
+</testrun>

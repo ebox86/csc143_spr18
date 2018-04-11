@@ -1,0 +1,8 @@
+package StanleysStorage;
+
+public class MyStorage {
+
+	public static void main(String[] Args) {
+		
+	}
+}

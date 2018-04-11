@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerTest" project="Project1" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="StanleysStorage.CustomerTest" time="0.0" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]">
+    <testcase name="testPhoneValidation" classname="StanleysStorage.CustomerTest" time="0.0" displayname="testPhoneValidation" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testPhoneValidation(StanleysStorage.CustomerTest)]"/>
+    <testcase name="testBalanceCreditAndCharge" classname="StanleysStorage.CustomerTest" time="0.0" displayname="testBalanceCreditAndCharge" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testBalanceCreditAndCharge(StanleysStorage.CustomerTest)]"/>
+    <testcase name="testConstructorAndGets" classname="StanleysStorage.CustomerTest" time="0.0" displayname="testConstructorAndGets" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testConstructorAndGets(StanleysStorage.CustomerTest)]"/>
+    <testcase name="testSettersAndMethods" classname="StanleysStorage.CustomerTest" time="0.0" displayname="testSettersAndMethods" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testSettersAndMethods(StanleysStorage.CustomerTest)]"/>
+  </testsuite>
+</testrun>

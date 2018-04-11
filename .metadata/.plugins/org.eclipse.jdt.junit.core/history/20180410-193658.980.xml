@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="LocationTest" project="Project1" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="StanleysStorage.LocationTest" time="0.02" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]">
+    <testcase name="testConstructorAndGets" classname="StanleysStorage.LocationTest" time="0.003" displayname="testConstructorAndGets" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]/[test:testConstructorAndGets(StanleysStorage.LocationTest)]"/>
+    <testcase name="testGetEmptyUnits" classname="StanleysStorage.LocationTest" time="0.017" displayname="testGetEmptyUnits" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.LocationTest]/[test:testGetEmptyUnits(StanleysStorage.LocationTest)]"/>
+  </testsuite>
+</testrun>

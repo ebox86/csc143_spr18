@@ -1,0 +1,19 @@
+package StanleysStorage;
+
+public class Unit {
+
+	private int width;
+	private int height;
+	private int length;
+	private double standardPrice;
+	private double price;
+	private unitType type;
+	private Customer customer;
+	
+	
+	
+	
+	public enum unitType {
+		STANDARD, HUMIDITY, TEMPERATURE
+	}
+}

@@ -1,0 +1,32 @@
+package StanleysStorage;
+
+public class Unit {
+
+	private int width;
+	private int height;
+	private int length;
+	private double standardPrice;
+	private double price;
+	private unitType type;
+	private Customer customer;
+	
+	
+	public Unit(int width, int height, int length, double standardPrice, double price, unitType type,
+			Customer customer) {
+		super();
+		this.width = width;
+		this.height = height;
+		this.length = length;
+		this.standardPrice = standardPrice;
+		this.price = price;
+		this.type = type;
+		this.customer = customer;
+	}
+
+
+
+
+	public enum unitType {
+		STANDARD, HUMIDITY, TEMPERATURE
+	}
+}

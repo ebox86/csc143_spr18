@@ -1,0 +1,89 @@
+package StanleysStorage;
+
+import StanleysStorage.Unit.unitType;
+
+public class Location {
+
+	private String designation;
+	private int rentedUnitCount;
+	private int row;
+	private int col;
+	private Unit[][] unitArr;
+	private Customer[] custArr;
+	
+	
+	public Location(String designation) throws Exception {
+		this.designation = designation;
+		this.rentedUnitCount = 0;
+		this.row = 12;
+		this.col = 20;
+		this.unitArr = new Unit[row][col];
+		this.custArr = new Customer[100];
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				unitArr[i][j] = new Unit(10, 10, 10, 10.0, unitType.STANDARD);
+			}
+		}
+	}
+
+
+	/*
+	 * Getters and Setters
+	 */
+	
+	
+
+	/*
+	 * methods
+	 */
+
+	public String getDesignation() {
+		return designation;
+	}
+
+
+	public int getRentedUnitCount() {
+		return rentedUnitCount;
+	}
+	
+	
+	public Unit getUnit(int row, int col) {
+		return unitArr[row][col];
+	}
+	
+	
+	public Unit[] getEmptyUnits() {
+		int arrSize = 0;
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				if(unitArr[i][j].getCustomer() == null) {
+					arrSize += 1;
+				}
+			}
+		}
+		Unit[] tempArr = new Unit[arrSize];
+		int idx = 0;
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				if(unitArr[i][j].getCustomer() == null) {
+					tempArr[idx] = unitArr[i][j];
+					idx += 1;
+				}
+			}
+		}
+		return tempArr;
+	}
+	
+	public String toString() {
+		String retVal = "";
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				retVal += unitArr[i][j].toString() + "\n\n";
+			}
+			retVal += "\n";
+		}
+		return retVal;
+	}
+	
+	
+}

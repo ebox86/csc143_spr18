@@ -1,0 +1,59 @@
+package StanleysStorage;
+
+import java.util.Date;
+
+public class Unit {
+
+	private int width;
+	private int height;
+	private int length;
+	private double standardPrice;
+	private double price;
+	private unitType unitType;
+	private Customer customer;
+	private Date rentalDate;
+	
+	
+	public Unit(int width, int height, int length, double standardPrice, unitType type,
+			Customer customer) {
+		super();
+		this.width = width;
+		this.height = height;
+		this.length = length;
+		this.standardPrice = standardPrice;
+		this.unitType = type;
+		this.customer = customer;
+	}
+
+	public enum unitType {
+		STANDARD, HUMIDITY, TEMPERATURE
+	}
+	
+	public unitType getUnitType(){
+		return unitType;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public double getStandardPrice() {
+		return standardPrice;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getLength() {
+		return length;
+	}
+}

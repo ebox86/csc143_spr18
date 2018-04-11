@@ -1,0 +1,9 @@
+package StanleysStorage;
+
+public class Unit {
+
+	private int width;
+	private int height;
+	private int length;
+	private unitType type;
+}
