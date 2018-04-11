@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="CustomerTest" project="Project1" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="StanleysStorage.CustomerTest" time="0.001" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]">
-    <testcase name="testPhoneValidation" classname="StanleysStorage.CustomerTest" time="0.001" displayname="testPhoneValidation" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testPhoneValidation(StanleysStorage.CustomerTest)]"/>
-    <testcase name="testConstructorAndGets" classname="StanleysStorage.CustomerTest" time="0.0" displayname="testConstructorAndGets" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testConstructorAndGets(StanleysStorage.CustomerTest)]"/>
-    <testcase name="testSettersAndMethods" classname="StanleysStorage.CustomerTest" time="0.0" displayname="testSettersAndMethods" uniqueid="[engine:junit-vintage]/[runner:StanleysStorage.CustomerTest]/[test:testSettersAndMethods(StanleysStorage.CustomerTest)]"/>
-  </testsuite>
-</testrun>

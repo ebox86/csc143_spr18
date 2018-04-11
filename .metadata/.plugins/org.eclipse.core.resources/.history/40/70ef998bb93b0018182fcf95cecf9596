@@ -1,9 +1,0 @@
-package StanleysStorage;
-
-public class MyStorage {
-
-	public static void main(String[] Args) {
-		Customer cust = new Customer("Evan", "3049067652");
-		cust.toString();
-	}
-}
