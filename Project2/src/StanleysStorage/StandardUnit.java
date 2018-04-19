@@ -3,7 +3,7 @@ package StanleysStorage;
 /**
  * StandardUnit -- stores information about a standard unit
  * @author evankoh
- *
+ * @version csc143
  */
 public class StandardUnit extends Unit {
 

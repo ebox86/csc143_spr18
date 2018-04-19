@@ -9,7 +9,7 @@ import org.junit.Test;
 /**
  * Tests the Customer Class
  * @author evankoh
- *
+ * @version csc143
  */
 public class CustomerTest {
 	
@@ -67,15 +67,6 @@ public class CustomerTest {
 		assertEquals(25.0, cust.getBalance(), 0.0);
 		cust.credit(10.0);
 		assertEquals(15.0, cust.getBalance(), 0.0);
-	}
-	
-	@Test
-	public void testToString() {
-		Customer cust = new Customer("Evan", "5555555555");
-		assertEquals(cust.toString(), "Customer Name: Evan\n" + 
-				"Phone Number: 5555555555\n" + 
-				"#########################\n" + 
-				"Current Balance: $0.0");
 	}
 	
 }

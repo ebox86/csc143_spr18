@@ -1,14 +1,17 @@
 package StanleysStorage;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Calendar;
 
 /**
  * Unit -- Used for creating and storing Staney Storage Unit information
  * @author evankoh
- *
+ * @version csc143
  */
 public abstract class Unit {
 
@@ -39,13 +42,10 @@ public abstract class Unit {
 		if(width % 4 != 0 || length % 4 != 0 || height % 2 != 0) {
 			throw new IllegalArgumentException("Width and Length must be multiple of 4, Height multiple of 2");
 		}
-		if(price < 0.0) {
-			throw new IllegalArgumentException("standard unit price must be >= $0.00");
-		}
 		this.width = width;
 		this.height = height;
 		this.length = length;
-		this.price = price;
+		setPrice(price);
 		this.location = loc;
 		this.unitName = name;
 	}
@@ -69,6 +69,14 @@ public abstract class Unit {
 	 */
 	public double getPrice() {
 		return price;
+	}
+	
+	public void setPrice(double price) throws IllegalArgumentException {
+		if(price < 0.0) {
+			throw new IllegalArgumentException("standard unit price must be >= $0.00");
+		} else {
+			this.price = price;
+		}
 	}
 
 	/**
@@ -150,18 +158,19 @@ public abstract class Unit {
 	 * Returns a String representation of the Unit
 	 */
 	public String toString() {
+		NumberFormat currencyf = DecimalFormat.getCurrencyInstance(Locale.US);
 		if(this.customer != null) {
-			return "Unit Information:\n"
+			return "Unit Information: " + this.getUnitName() + "\n"
 					+ "width: " + width + "' height: " + height + "' length: " + length + "'"
 					+ "\nRental Date: " + df.format(this.rentalDate) 
 					+ "\n" + this.customer.toString()
-					+ "\nunit price: $" + price
+					+ "\nunit price: " + currencyf.format(price)
 					+ "\nunit type: " + this.getClass().getName();
 		} else {
-			return "Unit Information:\n"
+			return "Unit Information: " + this.getUnitName() + "\n"
 					+ "width: " + width + " height: " + height + " length: " + height
 					+ "\n--Unit Not Rented--"
-					+ "\nunit price: $" + price
+					+ "\nunit price: " + currencyf.format(price)
 					+ "\nunit type: " + this.getClass().getName()
 					+ "\nunit name: " + this.getUnitName();
 		}

@@ -13,7 +13,7 @@ import org.junit.Test;
 /**
  * Tests the Location Class
  * @author evankoh
- *
+ * @version csc143
  */
 public class LocationTest {
 

@@ -8,7 +8,6 @@ package StanleysStorage;
 public class HumidityUnit extends Unit {
 	private int humidity;
 	private Location loc;
-	private double price;
 
 	/**
 	 * Constructs a new HumidityUnit
@@ -54,6 +53,7 @@ public class HumidityUnit extends Unit {
 		if(humidity < 20 || humidity > 60) {
 			throw new IllegalArgumentException("Unit humidity level can only be set in the range 20 to 60");
 		} else {
+			this.setPrice(loc.getBasePrice() + ((this.getWidth() * this.getHeight()) * 5.0) + HumidityUnit.calculatePrice(humidity));
 			this.humidity = humidity;
 		}
 	}

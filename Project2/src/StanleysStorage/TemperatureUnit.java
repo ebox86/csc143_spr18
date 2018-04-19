@@ -3,12 +3,11 @@ package StanleysStorage;
 /**
  * TemperatureUnit -- stores information about temperature units
  * @author evankoh
- *
+ * @version csc143
  */
 public class TemperatureUnit extends Unit {
 	private int temp;
 	private Location loc;
-	private double price;
 	
 	/**
 	 * Constructs a new Temperature Unit
@@ -54,6 +53,7 @@ public class TemperatureUnit extends Unit {
 		if(temp < 45 || temp > 70) {
 			throw new IllegalArgumentException("Unit temperature can only be set in the range 45 to 70");
 		} else {
+			this.setPrice(loc.getBasePrice() + (this.getLength() * this.getWidth() * this.getHeight()) * 1.0 + TemperatureUnit.calculatePrice(temp));
 			this.temp = temp;
 		}
 	}

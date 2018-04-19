@@ -1,12 +1,14 @@
 package StanleysStorage;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 
+/**
+ * Tests various methods of the StanleyStorage Classes
+ * @author evankoh
+ * @version csc143
+ */
 public class MyStorage {
 	
 	public static void main(String[] Args) {
@@ -26,7 +28,7 @@ public class MyStorage {
 		System.out.println(loc.getEmptyUnits().length + " empty units total");
 		System.out.println(loc.getEmptyUnits(StandardUnit.class).length + " empty standard units");
 		System.out.println(loc.getEmptyUnits(HumidityUnit.class).length + " empty humidity units");
-		System.out.println(loc.getEmptyUnits(TemperatureUnit.class).length + " empty temperature units");
+		System.out.println(loc.getEmptyUnits(TemperatureUnit.class).length + " empty temperature units\n\n");
 		//System.out.println(loc.toString());
 		//System.out.println(loc.getDesignation());
 		//System.out.println(loc.getCity());
@@ -35,23 +37,28 @@ public class MyStorage {
 			loc.getUnit(1, 1).rent(cust1, df.parse("04/18/2018"));
 			loc.getUnit(4, 2).rent(cust1, df.parse("04/20/2018"));
 			loc.getUnit(6, 3).rent(cust1, df.parse("04/20/2018"));
-			System.out.println(loc.getUnitsByCustomer(cust1).length + " number of unit Cust1 has");
+			loc.getUnit(8, 3).rent(cust1, df.parse("04/20/2018"));
+			((HumidityUnit) loc.getUnit(8, 3)).setHumidity(25);
+			loc.getUnit(11, 4).rent(cust1, df.parse("04/30/2018"));
+			((TemperatureUnit) loc.getUnit(11, 4)).setTemperature(69);
+			System.out.println("number of units Cust1 has: " + loc.getUnitsByCustomer(cust1).length + "\n\n");
 			loc.getUnit(12, 5).rent(new Customer("E", "5555555555"), df.parse("04/20/2018"));
 			loc.getUnit(12, 2).rent(new Customer("E", "5555555555"), df.parse("04/20/2018"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//System.out.println(loc.toString());
-		System.out.println(loc.getEmptyUnits(StandardUnit.class).length);
-		System.out.println(loc.getEmptyUnits(HumidityUnit.class).length);
-		System.out.println(loc.getEmptyUnits(TemperatureUnit.class).length);
 		loc.chargeRent();
-		//System.out.println(loc.toString());
+		loc.chargeRent();
+		loc.chargeRent();
+		//System.out.println(loc.getCustomerCount());
+		System.out.println(loc.unitMap());
 		//loc.getUnit(12, 20).getCustomer().credit(100.0);
-		//loc.chargeRent();
-		//loc.chargeRent();
+		loc.chargeRent();
+		loc.chargeRent();
 		//Unit[] untArr = loc.getEmptyUnits(unitType.STANDARD);
-		//System.out.println();
+		System.out.println(loc.toString());
+		System.out.println(loc.unitMap());
 		
 		
 		

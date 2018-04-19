@@ -1,5 +1,9 @@
 package StanleysStorage;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * Customer --  A Stanley Storage Customer object used to track Customer and balance information
  * @author evankoh
@@ -98,9 +102,10 @@ public class Customer {
 	 * Returns a string representation of the Customer object
 	 */
 	public String toString() {
+		NumberFormat currencyf = DecimalFormat.getCurrencyInstance(Locale.US);
 		return "Customer Name: " + this.name 
 				+ "\nPhone Number: " + this.phone
 				+ "\n#########################"
-				+ "\nCurrent Balance: $" + this.balance;
+				+ "\nCurrent Balance: " + currencyf.format(this.balance);
 	}
 }

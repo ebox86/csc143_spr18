@@ -5,7 +5,7 @@ package StanleysStorage;
  * and Units/Customers
  * 
  * @author evankoh
- *
+ * @version csc143
  */
 public class Location {
 
@@ -31,26 +31,29 @@ public class Location {
 		this.basePrice = basePrice;
 		unitArr = new Unit[12][];
 		custArr = new Customer[100];
-		Unit[] standard = new StandardUnit[10];
-		Unit[] humidity = new HumidityUnit[8];
-		Unit[] temp = new TemperatureUnit[6];
+ 
 		int index = 0;
+		// standard units
 		for (int i = 0; i < 7; i++) {
+			Unit[] standard  = new StandardUnit[10];
 			for (int j = 0; j < 10; j++) {
 				standard[j] = new StandardUnit(16, 16, 8, this, index + 1 + "-" + (j + 1));
 			}
 			unitArr[index] = standard;
 			index++;
 		}
+		// humidity units
 		for (int i = 0; i < 3; i++) {
+			Unit[] humidity = new HumidityUnit[8];
 			for (int j = 0; j < 8; j++) {
 				humidity[j] = new HumidityUnit(16, 16, 8, 30, this, index + 1 + "-" + (j + 1));
 			}
 			unitArr[index] = humidity;
 			index++;
 		}
-
+		// temperature units
 		for (int i = 0; i < 2; i++) {
+			Unit[] temp = new TemperatureUnit[6];
 			for (int j = 0; j < 6; j++) {
 				temp[j] = new TemperatureUnit(16, 16, 8, 60, this, index + 1 + "-" + (j + 1));
 			}
@@ -71,18 +74,14 @@ public class Location {
 	 * @throws IllegalArgumentException
 	 */
 	public void setDesignation(String desig) throws IllegalArgumentException {
-		/*
-		 * if(desig.substring(0, 2).matches("[A-Z]{4}") && desig.substring(2,
-		 * 4).matches("[0-9]{2}") && desig.substring(4,
-		 * desig.length()).matches("[a-zA-Z]{1,}")){
-		 */
-		this.designation = desig;
-		this.state = desig.substring(0, 2);
-		this.locationNumber = Integer.parseInt((desig.substring(2, 4)));
-		this.city = desig.substring(4, desig.length());
-		// } else {
-		// throw new IllegalArgumentException("Designation not properly formatted!");
-		// }
+		if(desig.matches("^[a-zA-Z]{2}\\d{2}[a-zA-Z]+$")) {
+			this.designation = desig;
+			this.state = desig.substring(0, 2);
+			this.locationNumber = Integer.parseInt((desig.substring(2, 4)));
+			this.city = desig.substring(4, desig.length());
+		 } else {
+			 throw new IllegalArgumentException("Designation not properly formatted!");
+		 }
 	}
 
 	/**
@@ -281,12 +280,60 @@ public class Location {
 		for (int row = 0; row < unitArr.length; row++) {
 			for (int column = 0; column < unitArr[row].length; column++) {
 				if (unitArr[row][column].getCustomer() != null) {
-					unitArr[row][column].getCustomer().charge(unitArr[row][column].getPrice());
+					// checks if the user is a multi-unit renter, if so, apply discount to calculated price
+					if(getUnitsByCustomer(unitArr[row][column].getCustomer()).length > 1) {
+						double multiDiscount = unitArr[row][column].getPrice() * 0.05;
+						unitArr[row][column].getCustomer().charge(unitArr[row][column].getPrice() - multiDiscount);
+					// standard rate for a single unit renter
+					} else {
+						unitArr[row][column].getCustomer().charge(unitArr[row][column].getPrice());
+					}
 				} 
 			}
 		}
 	}
 
+	/**
+	 * UnitMap -- a pseudo-graphical representation of the currently booked units
+	 * 
+	 * @return String representation of site layout and units
+	 */
+	public String unitMap() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("-----------------------------------------------------------\n"
+				+ "           Unit Map for Location " + this.designation + "\n"
+				+ "-----------------------------------------------------------");
+		sb.append("\n\n      0   1   2   3   4   5   6   7   8   9\n");
+		for (int row = 0; row <= 12; row++) {
+			if (row != 0) {
+				sb.append("\n" + String.format("%02d", row - 1) + ":  ");
+				for (int col = 0; col < unitArr[row - 1].length; col++) {
+					if (unitArr[row - 1][col].getCustomer() != null) {
+						// This is some wonky looking string formatting for the
+						// unit map, but it works
+						// TODO: Improve this later on
+						if (unitArr[row - 1][col].getClass() == StandardUnit.class) {
+							sb.append(" S*_");
+						} else if (unitArr[row - 1][col].getClass() == HumidityUnit.class) {
+							sb.append(" H" + ((HumidityUnit) unitArr[row - 1][col]).getHumidity());
+						} else if ((unitArr[row - 1][col].getClass() == TemperatureUnit.class)) {
+							sb.append(" T" + ((TemperatureUnit) unitArr[row - 1][col]).getTemperature());
+						}
+					} else {
+						if (unitArr[row - 1][col].getClass() == StandardUnit.class) {
+							sb.append(" S__");
+							} else if (unitArr[row - 1][col].getClass() == HumidityUnit.class) {
+								sb.append(" H__");
+							} else if ((unitArr[row - 1][col].getClass() == TemperatureUnit.class)) {
+								sb.append(" T__");
+							}
+					}
+				}
+			}
+		}
+		return sb.toString();
+	}
+	
 	/**
 	 * Returns a string representation of the Location object
 	 */
@@ -295,7 +342,7 @@ public class Location {
 		String retVal = "";
 		for (int row = 0; row < unitArr.length; row++) {
 			for (int column = 0; column < unitArr[row].length; column++) {
-				retVal += (row + 1) + "-" + (column + 1) + " " + unitArr[row][column].toString() + "\n\n";
+				retVal += unitArr[row][column].toString() + "\n\n";
 			}
 			retVal += "\n";
 		}
