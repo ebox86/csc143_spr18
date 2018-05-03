@@ -216,11 +216,11 @@ public class Location {
 	 * @param type
 	 * @return
 	 */
-	public Unit[] getEmptyUnits(Object obj) {
+	public Unit[] getEmptyUnits(Class c) {
 		int arrSize = 0;
 		for (int row = 0; row < unitArr.length; row++) {
 			for (int column = 0; column < unitArr[row].length; column++) {
-				if (unitArr[row][column].getCustomer() == null && unitArr[row][column].getClass() == obj) {
+				if (unitArr[row][column].getCustomer() == null && unitArr[row][column].getClass() == c) {
 					arrSize += 1;
 				}
 			}
@@ -229,7 +229,7 @@ public class Location {
 		int idx = 0;
 		for (int i = 0; i < unitArr.length; i++) {
 			for (int j = 0; j < unitArr[i].length; j++) {
-				if (unitArr[i][j].getCustomer() == null && unitArr[i][j].getClass() == obj) {
+				if (unitArr[i][j].getCustomer() == null && unitArr[i][j].getClass() == c) {
 					tempArr[idx] = unitArr[i][j];
 					idx += 1;
 				}

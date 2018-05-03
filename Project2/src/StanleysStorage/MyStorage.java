@@ -34,16 +34,16 @@ public class MyStorage {
 		//System.out.println(loc.getCity());
 		
 		try {
-			loc.getUnit(1, 1).rent(cust1, df.parse("04/18/2018"));
-			loc.getUnit(4, 2).rent(cust1, df.parse("04/20/2018"));
-			loc.getUnit(6, 3).rent(cust1, df.parse("04/20/2018"));
-			loc.getUnit(8, 3).rent(cust1, df.parse("04/20/2018"));
+			loc.getUnit(1, 1).rent(cust1, df.parse("05/01/2018"));
+			loc.getUnit(4, 2).rent(cust1, df.parse("04/30/2018"));
+			loc.getUnit(6, 3).rent(cust1, df.parse("04/29/2018"));
+			loc.getUnit(8, 3).rent(cust1, df.parse("04/30/2018"));
 			((HumidityUnit) loc.getUnit(8, 3)).setHumidity(25);
 			loc.getUnit(11, 4).rent(cust1, df.parse("04/30/2018"));
 			((TemperatureUnit) loc.getUnit(11, 4)).setTemperature(69);
 			System.out.println("number of units Cust1 has: " + loc.getUnitsByCustomer(cust1).length + "\n\n");
-			loc.getUnit(12, 5).rent(new Customer("E", "5555555555"), df.parse("04/20/2018"));
-			loc.getUnit(12, 2).rent(new Customer("E", "5555555555"), df.parse("04/20/2018"));
+			loc.getUnit(12, 5).rent(new Customer("E", "5555555555"), df.parse("04/30/2018"));
+			loc.getUnit(12, 2).rent(new Customer("E", "5555555555"), df.parse("04/30/2018"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -51,16 +51,16 @@ public class LocationTest {
 		assertEquals(23, loc.getLocationNumber());
 		assertEquals("Issaquah", loc.getCity());
 		assertEquals("WA23Issaquah", loc.getDesignation());
-		Unit unit1010 = loc.getUnit(10, 10);
-		assertEquals(unit1010, loc.getUnit(10, 10));
-		assertEquals(240, loc.getEmptyUnits().length);
+		Unit unit1010 = loc.getUnit(10, 2);
+		assertEquals(unit1010, loc.getUnit(10, 2));
+		assertEquals(106, loc.getEmptyUnits().length, 0);
 	}
 
 	@Test
 	public void testGetEmptyUnits() throws Exception {
 		Location loc = new Location("WA23Issaquah", 15.0);
-		assertEquals(240, loc.getEmptyUnits().length);
-		loc.getUnit(5, 1).rent(new Customer("Evan", "5555555555"), df.parse("04/10/2018"));
+		assertEquals(106, loc.getEmptyUnits().length);
+		loc.getUnit(5, 1).rent(new Customer("Evan", "5555555555"), df.parse("04/30/2018"));
 	}
 	
 	@Test
