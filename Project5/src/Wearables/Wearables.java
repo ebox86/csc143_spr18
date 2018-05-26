@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Wearables -- used to build, store and output a list of wearable gadgets and accessories
@@ -84,7 +85,7 @@ public class Wearables {
 	/**
 	 * Returns a String containing a report of the wearable devices, sorted by rank
 	 * @param idxArr the input array of indices
-	 * @return
+	 * @return a string representation of the parsed list of wearable devices, sorted by rank
 	 */
 	public String getRankReport(int[] idxArr){
 		String s = "Wearables Rank Report: \n"
@@ -97,9 +98,9 @@ public class Wearables {
 	}
 	
 	/**
-	 * Returns a String containing a report of the wearable devices, sorted by rank
+	 * Returns a String containing a report of the wearable devices, sorted by price
 	 * @param idxArr the input array of indices
-	 * @return
+	 * @return a string representation of the parsed list of wearable devices, sorted by price
 	 */
 	public String getPriceReport(int[] idxArr){
 		String s = "Wearables Price Report: \n"
@@ -121,23 +122,54 @@ public class Wearables {
 	}
 	
 	/**
-	 * Returns a String containing a report of the wearable devices, sorted by rank
+	 * Returns a String containing a report of the wearable devices, sorted by company
 	 * @param idxArr the input array of indices
-	 * @return
+	 * @return a string representation of the parsed list of wearable devices, sorted by rank
 	 */
 	public String getCompanyReport(int[] idxArr){
 		String s = "Wearables Company Report: \n"
 				+ "Company Name\t\tCountry of Origin\n"
-				+ "====\t\t============\n";
+				+ "============\t\t=================\n";
 		String n = wearArr[idxArr[0]].getCompanyName();
 		String c = wearArr[idxArr[0]].getCompanyCountry();
 		for(int i = 1; i < idxArr.length; i++){
-			s += n + "\t" + c + "\n";
+			s += n + "\t\t\t" + c + "\n";
 			
 			n = wearArr[idxArr[i]].getCompanyName();
 			c = wearArr[idxArr[i]].getCompanyCountry();
 		}
 		return s;
+	}
+	
+
+	
+	public void toCSV(int[] idxArr){
+		PrintWriter pw = null;
+		try {
+		    pw = new PrintWriter(new File("report.csv"));
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		}
+		StringBuilder builder = new StringBuilder();
+		String ColumnNamesList = "Ranking,Name,Price,Body Location,Category,Company Name,Company URL,Company Location,Company City,Company US State,Company Country";
+
+		builder.append(ColumnNamesList +"\n");
+		for(int i = 0; i < idxArr.length; i++){
+			builder.append(i + 1 + ",");
+			builder.append("\"" + wearArr[idxArr[i]].getName() + "\",");
+			builder.append(wearArr[idxArr[i]].getPrice() + ",");
+			builder.append("\"" + wearArr[idxArr[i]].getBodyLocation() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCategory() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCompanyName() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCompanyURL() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCompanyAddress() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCompanyCity() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCompanyState() + "\",");
+			builder.append("\"" + wearArr[idxArr[i]].getCompanyCountry() + "\"\n");
+		}
+		builder.append('\n');
+		pw.write(builder.toString());
+		pw.close();
 	}
 	
 	/**

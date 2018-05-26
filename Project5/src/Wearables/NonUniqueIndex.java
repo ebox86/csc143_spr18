@@ -78,4 +78,21 @@ public class NonUniqueIndex<T extends Comparable<T>> {
 			return root.add(t, pos);
 		}
 	}
+	
+	/**
+	 * Clears the TST
+	 */
+    public void clear()
+    {
+        root = null;
+    }
+    
+    /**
+     * Used to check if the TST has content or not
+     * @return true or false depending if TST is empty
+     */
+    public boolean isEmpty()
+    {
+        return root == null;
+    }
 }

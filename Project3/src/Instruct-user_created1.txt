@@ -1,0 +1,4 @@
+width=500, height=500, red=255, blue=255, green=255
+shape=trapezoid, scale=100, x=10, y=10, filled=true, red=255
+shape=trapezoid, scale=200, x=200, y=50, filled=true, green=255
+shape=trapezoid, scale=300, x=200, y=150, filled=false, blue=255, rep=4, repRot=15

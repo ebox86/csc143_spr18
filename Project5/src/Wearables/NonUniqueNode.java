@@ -9,7 +9,7 @@ package Wearables;
 public class NonUniqueNode<T extends Comparable<T>> {
 		public T data;
 		public NonUniqueNode<T> left, right;
-		public DupeNode dupe;
+		public DupeNode<T> dupe;
 		public int index;
 
 		/**
@@ -35,10 +35,10 @@ public class NonUniqueNode<T extends Comparable<T>> {
 		public boolean add(T t, int pos){
 			if (t.compareTo(this.data) == 0){
 				if(dupe == null){
-					dupe = new DupeNode(pos);
+					dupe = new DupeNode<T>(t, pos);
 					return true;
 				} else {
-					dupe.add(pos);
+					dupe.add(t, pos);
 					return true;
 				}
 			} else if (t.compareTo(this.data) < 0){

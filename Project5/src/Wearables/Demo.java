@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 /**
  * Used to test functionality and output from the Wearables class
  * @author evan kohout
+ * @version csc143
  */
 public class Demo {
 	public static void main(String[] args){
@@ -34,10 +35,16 @@ public class Demo {
     	
     	
     	int[] myIntArr3 = myWearables.getCompanyIndices();
-    	// passes the output from the above method as a parameter for getRankReport method
-    	// tests output from getRankReport method
-    	System.out.println(myWearables.getRankReport(myIntArr));
+    	/*
+    	passes the output from the above method as a parameter for get*Report and CSV methods
+    	
+    	tests output from getRankReport method
+    	*/
+    	//System.out.println(myWearables.getRankReport(myIntArr));
     	//System.out.println(myWearables.getPriceReport(myIntArr2));
     	//System.out.println(myWearables.getCompanyReport(myIntArr3));
+    	
+    	//creates a CSV with the above created indices arrays
+    	myWearables.toCSV(myIntArr);
 	}
 }

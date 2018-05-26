@@ -1,0 +1,5 @@
+width=600, height=400, red=255, blue=255, green=255
+shape=rhombus, scale=400, x=100, y=100, filled=true, red=255
+shape=rhombus, scale=200, x=200, y=50, filled=true, green=255
+shape=circle, scale=200, x=160, y=170, filled=true, blue=200, green=200
+shape=rhombus, scale=300, x=50, y=50, filled=false, blue=255, rep=4, repRot=30

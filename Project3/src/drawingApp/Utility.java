@@ -29,6 +29,8 @@ public class Utility {
         addShapeStar(shapeLib);
         addShapeCircle(shapeLib);
         addShapeHeart(shapeLib);
+        addShapeTrapezoid(shapeLib);
+        addShapeRhombus(shapeLib);
         writeShapes(shapeLib);
     }
     
@@ -136,6 +138,34 @@ public class Utility {
         shapeLib.add(heart);
     }
 
+    /**
+     * Creates a trapezoid shape and adds it to the library
+     *
+     * @param   shapeLib    the shape library to which to add the shape
+     */
+    private static void addShapeTrapezoid(ArrayList<Shape> shapeLib) {
+        Shape trap = new Shape("trapezoid");
+        trap.addPoint(new Point(30, 0));
+        trap.addPoint(new Point(70, 0));
+        trap.addPoint(new Point(100, 100));
+        trap.addPoint(new Point(0, 100));
+        shapeLib.add(trap);
+    }
+    
+    /**
+     * Creates a Rhombus shape and adds it to the library
+     *
+     * @param   shapeLib    the shape library to which to add the shape
+     */
+    private static void addShapeRhombus(ArrayList<Shape> shapeLib) {
+        Shape rhombus = new Shape("rhombus");
+        rhombus.addPoint(new Point(10, 10));
+        rhombus.addPoint(new Point(100, 10));
+        rhombus.addPoint(new Point(110, 20));
+        rhombus.addPoint(new Point(20, 20));
+        shapeLib.add(rhombus);
+    }
+    
     /**
      * Writes shapes to their respective shape files, within the shapes folder (under the project folder)
      *
