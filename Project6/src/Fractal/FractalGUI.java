@@ -3,140 +3,159 @@ package Fractal;
 // From TutorialsPoint:  https://www.tutorialspoint.com/swing/swing_jmenubar_control.htm
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.nio.file.Paths;
+
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
-public class FractalGUI {
-   private JFrame mainFrame;
-   private JLabel headerLabel;
-   private JLabel statusLabel;
-   private JPanel controlPanel; 
+/**
+ * GUI class for making the settings GUI for fractal generation
+ * @author evankoh
+ * @version csc143
+ */
+public class FractalGUI extends JFrame {
 
-   public FractalGUI(){
-      prepareGUI();
-   }
-   public static void main(String[] args){
-      FractalGUI swingMenuDemo = new FractalGUI();     
-      swingMenuDemo.showMenuDemo();
-   }
-   private void prepareGUI(){
-      mainFrame = new JFrame("Java SWING Examples");
-      mainFrame.setSize(400,400);
-      mainFrame.setLayout(new GridLayout(3, 1));
+	private static final long serialVersionUID = -7250473974520993288L;
+	private Toolkit toolkit;
+    private JPanel picker1, picker2;
+    private Color cactusColor = Color.GREEN;
+    private Color pearColor = Color.PINK;
+    private int depth;
+    private int ratio;
+    
+    /**
+     * creates the Swing GUI for setting up the fractal
+     */
+    public FractalGUI() {
+        setSize(400, 425);
+        toolkit = getToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        JFrame drawFrame = new JFrame();
+        drawFrame.setSize(800, 800);
+        drawFrame.setVisible(true);
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout()); 
+        setLocation((screenSize.width - getWidth())/2, (screenSize.height - getHeight())/2);
+        setTitle("Fractal GUI settings");
 
-      headerLabel = new JLabel("",JLabel.CENTER );
-      statusLabel = new JLabel("",JLabel.CENTER);        
-      statusLabel.setSize(350,100);
-      
-      mainFrame.addWindowListener(new WindowAdapter() {
-         public void windowClosing(WindowEvent windowEvent){
-            System.exit(0);
-         }        
-      });    
-      controlPanel = new JPanel();
-      controlPanel.setLayout(new FlowLayout());
-
-      mainFrame.add(headerLabel);
-      mainFrame.add(controlPanel);
-      mainFrame.add(statusLabel);
-      mainFrame.setVisible(true);  
-   }
-   private void showMenuDemo(){
-      //create a menu bar
-      final JMenuBar menuBar = new JMenuBar();
-
-      //create menus
-      JMenu fileMenu = new JMenu("File");
-      JMenu editMenu = new JMenu("Edit"); 
-      final JMenu aboutMenu = new JMenu("About");
-      final JMenu linkMenu = new JMenu("Links");
-     
-      //create menu items
-      JMenuItem newMenuItem = new JMenuItem("New");
-      newMenuItem.setMnemonic(KeyEvent.VK_N);
-      newMenuItem.setActionCommand("New");
-
-      JMenuItem openMenuItem = new JMenuItem("Open");
-      openMenuItem.setActionCommand("Open");
-
-      JMenuItem saveMenuItem = new JMenuItem("Save");
-      saveMenuItem.setActionCommand("Save");
-
-      JMenuItem exitMenuItem = new JMenuItem("Exit");
-      exitMenuItem.setActionCommand("Exit");
-
-      JMenuItem cutMenuItem = new JMenuItem("Cut");
-      cutMenuItem.setActionCommand("Cut");
-
-      JMenuItem copyMenuItem = new JMenuItem("Copy");
-      copyMenuItem.setActionCommand("Copy");
-
-      JMenuItem pasteMenuItem = new JMenuItem("Paste");
-      pasteMenuItem.setActionCommand("Paste");
-
-      MenuItemListener menuItemListener = new MenuItemListener();
-
-      newMenuItem.addActionListener(menuItemListener);
-      openMenuItem.addActionListener(menuItemListener);
-      saveMenuItem.addActionListener(menuItemListener);
-      exitMenuItem.addActionListener(menuItemListener);
-      cutMenuItem.addActionListener(menuItemListener);
-      copyMenuItem.addActionListener(menuItemListener);
-      pasteMenuItem.addActionListener(menuItemListener);
-
-      final JCheckBoxMenuItem showWindowMenu = new JCheckBoxMenuItem("Show About", true);
-      showWindowMenu.addItemListener(new ItemListener() {
-         public void itemStateChanged(ItemEvent e) {
-            
-            if(showWindowMenu.getState()){
-               menuBar.add(aboutMenu);
-            } else {
-               menuBar.remove(aboutMenu);
+        setResizable(false);
+        ImageIcon open = new ImageIcon(getClass().getResource("color.png"));
+        JToolBar toolbar1 = new JToolBar();
+        JToolBar toolbar2 = new JToolBar();
+        JButton openb1 = new JButton(open);
+        JButton openb2 = new JButton(open);
+        openb1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JColorChooser clr = new JColorChooser();
+                Color color = clr.showDialog(panel, "Choose Color",
+                        Color.white);
+                cactusColor = color;
+                picker1.setBackground(color);
             }
-         }
-      });
-      final JRadioButtonMenuItem showLinksMenu = new JRadioButtonMenuItem(
-         "Show Links", true);
-      showLinksMenu.addItemListener(new ItemListener() {
-         public void itemStateChanged(ItemEvent e) {
-            
-            if(menuBar.getMenu(3)!= null){
-               menuBar.remove(linkMenu);
-               mainFrame.repaint();
-            } else {                   
-               menuBar.add(linkMenu);
-               mainFrame.repaint();
+        });
+        openb2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                JColorChooser clr = new JColorChooser();
+                Color color = clr.showDialog(panel, "Choose Color",
+                        Color.white);
+                pearColor = color;
+                picker2.setBackground(color);
             }
-         }
-      });
-      //add menu items to menus
-      fileMenu.add(newMenuItem);
-      fileMenu.add(openMenuItem);
-      fileMenu.add(saveMenuItem);
-      fileMenu.addSeparator();
-      fileMenu.add(showWindowMenu);
-      fileMenu.addSeparator();
-      fileMenu.add(showLinksMenu);       
-      fileMenu.addSeparator();
-      fileMenu.add(exitMenuItem);        
-      
-      editMenu.add(cutMenuItem);
-      editMenu.add(copyMenuItem);
-      editMenu.add(pasteMenuItem);
+        });
+        toolbar1.add(openb1);
+        picker1 = new JPanel();
+        picker1.setBackground(Color.GREEN);
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 100, 30, 100));
 
-      //add menu to menubar
-      menuBar.add(fileMenu);
-      menuBar.add(editMenu);
-      menuBar.add(aboutMenu);       
-      menuBar.add(linkMenu);
+        toolbar2.add(openb2);
+        picker2 = new JPanel();
+        picker2.setBackground(Color.PINK);
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 100, 30, 100));
 
-      //add menubar to the frame
-      mainFrame.setJMenuBar(menuBar);
-      mainFrame.setVisible(true);     
-   }
-   class MenuItemListener implements ActionListener {
-      public void actionPerformed(ActionEvent e) {            
-         statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
-      }    
-   }
+        JLabel lab1 = new JLabel("Project 6: Fractal GUI");
+        JLabel lab2 = new JLabel("evan kohout ••• csc143 - spr 2018");
+        JLabel lab3 = new JLabel("cactus color");
+        JLabel lab4 = new JLabel("pear color");
+
+
+        lab1.setFont(new Font("Serif", Font.BOLD, 36));
+
+        JSlider slider1 = new JSlider(JSlider.HORIZONTAL, 2, 10, 2);
+        JSlider slider2 = new JSlider(JSlider.HORIZONTAL, 40, 70, 40);
+
+        JButton drawButton = new JButton("Draw!");
+        
+        slider1.setMajorTickSpacing(1);
+        slider1.setPaintTicks(true);
+        slider1.setPaintLabels(true);
+        slider1.setSnapToTicks(true);
+        slider1.setLabelTable(slider1.createStandardLabels(1));
+        depth = slider1.getValue();
+        JLabel lab5 =  new JLabel("Recursion Depth: " + String.valueOf(depth));
+        
+        slider2.setMinorTickSpacing(1);
+        slider2.setMajorTickSpacing(5);
+        slider2.setPaintTicks(true);
+        slider2.setPaintLabels(true);
+        slider2.setSnapToTicks(true);
+
+        slider2.setLabelTable(slider2.createStandardLabels(10));
+        ratio = slider2.getValue();
+        JLabel lab6 = new JLabel("Ratio of Child to Parent Radius: " + ratio + "%");
+
+        panel.add(lab1);
+        panel.add(lab2);
+        panel.add(createHorizontalSeparator());
+        panel.add(lab3);
+        panel.add(picker1);
+        panel.add(toolbar1);
+        panel.add(createHorizontalSeparator());
+        panel.add(lab4);
+        panel.add(picker2);
+        panel.add(toolbar2);
+        panel.add(createHorizontalSeparator());
+        panel.add(lab5);
+        panel.add(slider1);
+
+        panel.add(createHorizontalSeparator());
+        panel.add(lab6);
+        panel.add(slider2);
+        panel.add(drawButton);
+        
+        getContentPane().add(panel);
+        slider1.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				depth = ((JSlider)e.getSource()).getValue();
+				lab5.setText("Recursion Depth: " + String.valueOf(depth));
+			}});
+        slider2.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				ratio = ((JSlider)e.getSource()).getValue();
+				lab6.setText("Ratio of Child to Parent Radius: " + ratio + "%");
+			}});
+        drawButton.addChangeListener(new ChangeListener(){
+
+ 			@Override
+ 			public void stateChanged(ChangeEvent e) {
+ 				FractalGen newGen = new FractalGen(depth, ratio, cactusColor, pearColor, drawFrame);
+ 			}});
+        
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    /*
+     * Private helper for making seperators
+     */
+    private JComponent createHorizontalSeparator() {
+        JSeparator x = new JSeparator(SwingConstants.HORIZONTAL);
+        x.setPreferredSize(new Dimension(300,5));
+        return x;
+    }
 }
