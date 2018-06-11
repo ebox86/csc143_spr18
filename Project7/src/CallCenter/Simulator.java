@@ -51,10 +51,10 @@ public class Simulator {
 		techQueue = new HashQueue<Tech>();
 		for(int i = 0; i < custSize; i++) {
 			int randVal = (int)(Math.random() * custArr.size());
-			custQueue.push(custArr.get(randVal));
+			custQueue.add(custArr.get(randVal));
 		}
 		for(int i = 0; i < techArr.size(); i++) {
-			techQueue.push(techArr.get((int)(Math.random() * techArr.size())));
+			techQueue.add(techArr.get((int)(Math.random() * techArr.size())));
 		}
 	}
 	
@@ -64,15 +64,15 @@ public class Simulator {
 	public void runSim() {
         class simTask extends TimerTask {
             public void run() {
-            	Customer currentCust = custQueue.pop();
-            	Tech currentTech = techQueue.pop();
+            	Customer currentCust = custQueue.remove();
+            	Tech currentTech = techQueue.remove();
                 System.out.println("Call number: " + callCount
                 		+ "\nCurrently matching customer: \n" + currentCust.toString() + " " 
                 		+ "\nWith technician: \n" + currentTech.toString() 
                 		+ "\n\n");
                 callCount++;
-                custQueue.push(custArr.get((int)(Math.random() * custArr.size())));
-                techQueue.push(currentTech);
+                custQueue.add(custArr.get((int)(Math.random() * custArr.size())));
+                techQueue.add(currentTech);
                 if (callCount >= calls + 1) {
                     System.out.println("##########################################"
                     		+ "\n          Simulation complete\n"

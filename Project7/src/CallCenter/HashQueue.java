@@ -33,7 +33,7 @@ public class HashQueue<T> {
 	 * @param t
 	 *            - the object passed
 	 */
-	public void push(T t) {
+	public void add(T t) {
 		Node<T> node = new Node<T>(t);
 		if (!hashset.contains(t)) {
 			hashset.add(t);
@@ -91,7 +91,7 @@ public class HashQueue<T> {
 	/**
 	 * Removes an element of type T from the queue
 	 */
-	public T pop() {
+	public T remove() {
 		if (front == null) {
 			return null;
 		}

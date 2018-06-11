@@ -35,15 +35,15 @@ public class HashQueueTest {
     }
     
     @Test
-    public void testPush() {
+    public void testAdd() {
     	HashQueue<Customer> hq = new HashQueue<Customer>();
     	Customer cust1 = new Customer("1", "bob", "smith", "email@example.com", "5555555555");
-    	hq.push(cust1);
+    	hq.add(cust1);
     	assertEquals(1, hq.size());
     	Customer cust2 = new Customer("1", "bill", "gray", "email@aol.com", "5555555555");
-    	hq.push(cust2);
+    	hq.add(cust2);
     	assertEquals(2, hq.size());
-    	hq.push(cust2);
+    	hq.add(cust2);
     	assertEquals(2, hq.size());
     }
     
@@ -51,7 +51,7 @@ public class HashQueueTest {
     public void testClear() {
     	HashQueue<Customer> hq = new HashQueue<Customer>();
     	Customer cust1 = new Customer("1", "bob", "smith", "email@example.com", "5555555555");
-    	hq.push(cust1);
+    	hq.add(cust1);
     	assertEquals(1, hq.size());
     	hq.clear();
     	assertEquals(0, hq.size());
@@ -62,7 +62,7 @@ public class HashQueueTest {
     	HashQueue<Customer> hq = new HashQueue<Customer>();
     	assertEquals(true, hq.isEmpty());
     	Customer cust1 = new Customer("1", "bob", "smith", "email@example.com", "5555555555");
-    	hq.push(cust1);
+    	hq.add(cust1);
     	assertEquals(false, hq.isEmpty());
     }
     
@@ -70,10 +70,10 @@ public class HashQueueTest {
     public void testIterator() {
     	HashQueue<Customer> hq = new HashQueue<Customer>();
     	Customer cust1 = new Customer("1", "bob", "smith", "email@example.com", "5555555555");
-    	hq.push(cust1);
+    	hq.add(cust1);
     	assertEquals(1, hq.size());
     	while(hq.iterator().hasNext()) {
-    		hq.pop();
+    		hq.remove();
     	}
     	assertEquals(0, hq.size());
     }
@@ -82,7 +82,7 @@ public class HashQueueTest {
     public void testPeek() {
     	HashQueue<Customer> hq = new HashQueue<Customer>();
     	Customer cust1 = new Customer("1", "bob", "smith", "email@example.com", "5555555555");
-    	hq.push(cust1);
+    	hq.add(cust1);
     	Customer tempCust = hq.peek();
     	assertEquals("bob", tempCust.getFirstName());
     }
@@ -95,13 +95,13 @@ public class HashQueueTest {
     }
     
     @Test
-    public void testPop() {
+    public void testRemove() {
     	HashQueue<Customer> hq = new HashQueue<Customer>();
-    	Customer c = hq.pop();
+    	Customer c = hq.remove();
     	assertEquals(null, c);
     	Customer cust1 = new Customer("1", "bob", "smith", "email@example.com", "5555555555");
-    	hq.push(cust1);
-    	hq.pop();
+    	hq.add(cust1);
+    	hq.remove();
     	assertEquals(0, hq.size());
     	
     }
